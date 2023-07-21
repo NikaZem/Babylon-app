@@ -12,6 +12,10 @@ import {
     SceneLoader,
     InterpolateValueAction,
     GizmoManager,
+    PredicateCondition,
+    StandardMaterial,
+    SetValueAction,
+    Texture,
 } from '@babylonjs/core'
 
 
@@ -53,6 +57,30 @@ export class BasicScene {
         scene);
 
         sphere.position.y = 1;
+        const sphereMat = new StandardMaterial("ground", scene)
+
+        sphere.actionManager = new ActionManager(scene)
+
+        sphere.actionManager.registerAction(
+            new InterpolateValueAction(
+                ActionManager.OnPickTrigger,
+                sphereMat,
+                'diffuseColor',
+                new Color3(0, 0, 0)
+            ))!
+            .then(
+                new InterpolateValueAction(
+                    ActionManager.NothingTrigger,
+                    sphereMat, 
+                    'diffuseColor',
+                    new Color3(1, 1, 1)
+                )
+            )
+
+ 
+
+
+        sphere.material = sphereMat
 
         const gizmoManager = new GizmoManager(scene)
         gizmoManager.positionGizmoEnabled = true;

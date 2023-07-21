@@ -14,6 +14,7 @@
 import BabylonScene from '../components/BabylonScene.vue';
 import { defineComponent, ref } from 'vue';
 import { BasicScene } from '../Babylon/BasicScene'
+import { GizmoManager } from '@babylonjs/core';
 
 export default defineComponent({
   name: 'IndexPage',
@@ -27,9 +28,9 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style lang="scss">
 canvas {
   width: 100%;
   height: 100%;
 }
-</style>
+</style>>
